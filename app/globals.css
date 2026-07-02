@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --background: #15171c;
+  --foreground: #e8e9ed;
+  --bg-panel: #1b1e25;
+  --bg-elevated: #232730;
+  --border-subtle: #2e323c;
+  --text-secondary: #8b8f9c;
+  --accent: #e8a23d;
+  --accent-dim: #6b5429;
+  --accent-contrast: #15171c;
+  --bubble-self: #2c4a3e;
+  --bubble-other: #232730;
+  --bubble-self-text: var(--foreground);
+}
+
+html[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #16181d;
+  --bg-panel: #f7f7f8;
+  --bg-elevated: #edeef0;
+  --border-subtle: #dcdde1;
+  --text-secondary: #6b6f78;
+  --accent: #16181d;
+  --accent-dim: #9a9da3;
+  --accent-contrast: #ffffff;
+  --bubble-self: #16181d;
+  --bubble-other: #edeef0;
+  --bubble-self-text: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.presence-dot {
+  animation: breathe 2.4s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.msg-enter {
+  animation: fade-in-up 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presence-dot, .msg-enter {
+    animation: none;
+  }
+}
+
+.chat-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 3px;
+}
+.chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
