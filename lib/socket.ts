@@ -6,13 +6,14 @@ let socket: Socket | null = null;
 
 export function getSocket(): Socket {
   if (!socket) {
-    socket = io(
-      process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3000',
-      {
-        path: '/socket.io',
-        transports: ['websocket', 'polling'],
-      }
-    );
+    const socketUrl =
+      process.env.NEXT_PUBLIC_SOCKET_URL ||
+      window.location.origin;
+
+    socket = io(socketUrl, {
+      path: '/socket.io',
+      transports: ['websocket', 'polling'],
+    });
   }
 
   return socket;
